@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.1.0)
+project(bt_uav_landing)
+
+find_package(catkin REQUIRED COMPONENTS roscpp std_msgs sensor_msgs geometry_msgs cv_bridge)
+find_package(OpenCV REQUIRED)
+find_package(Eigen3 REQUIRED)
+catkin_package()
+
+add_executable(landing src/main.cpp)
+add_dependencies(landing ${catkin_EXPORTED_TARGETS})
+target_link_libraries(landing ${catkin_LIBRARIES})
+target_link_libraries(landing ${OpenCV_LIBS})
+target_link_libraries(landing ${OpenCV_LIBS} Eigen3::Eigen)
+target_include_directories(landing PRIVATE ${catkin_INCLUDE_DIRS})
+target_include_directories(landing PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_include_directories(landing PRIVATE ${EIGEN3_INCLUDE_DIR})
